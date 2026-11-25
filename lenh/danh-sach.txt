@@ -5,7 +5,7 @@ CTELEV - tao hoac cap nhat nhan cao do tai diem
 CTCHAINAGE - ghi ly trinh va khoang cach den duong tim
 CTINTERP - noi suy cao do giua 2 diem khong che
 CTPROFILE - lap bang ly trinh, cao do, toa do, khoang cach den tim
-TDXM - thong ke coc TDXM (vong tron) co tam nam trong polyline bao
+TDXM - thong ke coc TDXM (vong tron) trong polyline bao, xong tu chon cac coc do
 HVTDXM - giong TDXM
 UPDATE - cap nhat HVLisp ban moi nhat tu GitHub (giong HVUPDATE)
 HVUPDATE - cap nhat HVLisp ban moi nhat tu GitHub

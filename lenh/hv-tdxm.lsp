@@ -2,7 +2,8 @@
 ;;; Muc dich: thong ke coc tru dat xi mang (TDXM) ve bang vong tron CIRCLE co TAM nam
 ;;;           trong mot duong bao kin (polyline). In tong so coc, chia theo layer va
 ;;;           duong kinh, so coc cat duong bao; to sang cac coc dem duoc; tuy chon ghi
-;;;           so luong vao ban ve (layer CHU).
+;;;           so luong vao ban ve (layer CHU). Xong lenh cac coc dem duoc DANG DUOC CHON
+;;;           (dung ngay cho MOVE, COPY, PROPERTIES...) va luu lam tap chon Previous (go P).
 ;;; Cach dung: go TDXM -> chon polyline bao -> chon 1 vong tron TDXM mau (cung layer,
 ;;;            cung ban kinh moi duoc dem; Enter = dem moi vong tron) -> xem ket qua
 ;;;            -> chon diem ghi chu (Enter = khong ghi).
@@ -85,8 +86,12 @@
 
 (defun C:HVTDXM (/ *error* document boundary poly sample sdata layer radius all index
                    entity data center r count cut inside-set stats minx maxx miny maxy
-                   closest key point height pair)
-  (defun *error* (message) (ACT:report-error message document))
+                   closest key point height pair old-cmdecho)
+  (defun *error* (message)
+    (if old-cmdecho (setvar "CMDECHO" old-cmdecho))
+    (ACT:report-error message document)
+  )
+  (setq old-cmdecho (getvar "CMDECHO"))
   (setq document (ACT:undo-start))
   (setq boundary (car (entsel "\nChon polyline bao vung TDXM: ")))
   (cond
@@ -157,8 +162,17 @@
               (prompt "\nTDXM: da ghi so luong (layer CHU).")
             )
           )
+          ;; Luu tap chon Previous roi chon san (pickfirst) cac coc dem duoc.
+          (setvar "CMDECHO" 0)
+          (command "_.SELECT" inside-set "")
+          (setvar "CMDECHO" old-cmdecho)
+          (setq HV:tdxm-last inside-set)
           (sssetfirst nil inside-set)
-          (prompt "\nTDXM: cac coc dem duoc dang duoc chon (to sang). Nhan Esc de bo chon.")
+          (prompt (strcat "\nTDXM: DA CHON " (itoa count) " coc. Go ngay lenh (MOVE, COPY, PROPERTIES...) de dung tap chon nay;"))
+          (prompt "\n      sau nay o dong 'Select objects' go P de chon lai. Nhan Esc de bo chon.")
+          (if (= (getvar "PICKFIRST") 0)
+            (prompt "\nTDXM: PICKFIRST dang tat nen khong giu chon san duoc - go P o dong 'Select objects'.")
+          )
         )
       )
     )
