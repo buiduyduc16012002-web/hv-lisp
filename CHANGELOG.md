@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0 - 2026-11-25
+
+- Thêm lệnh `SUMHATCH` / `HVSUMHATCH`: quét chọn hatch, cộng tổng diện tích, chia theo layer, tự đổi ra m² theo INSUNITS (mm, cm, dm, m); không sửa bản vẽ.
+
 ## 0.6.0 - 2026-11-25
 
 - Thêm lệnh `FH` / `HVFH`: quét chọn cọc TĐXM (CIRCLE), tạo hatch SOLID liên kết cho từng vòng tròn trên layer HATCH, bỏ qua cọc đã có hatch; dùng được ngay tập chọn sẵn của `TDXM`.

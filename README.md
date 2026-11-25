@@ -41,6 +41,8 @@ Gõ `UPDATE` (hoặc `HVUPDATE`) trong AutoCAD. Lệnh chạy `update.ps1` (Powe
 | `HVTDXM` | Giống `TDXM` |
 | `FH` | Quét chọn cọc TĐXM, hatch đặc (SOLID, layer HATCH) bên trong từng vòng tròn; bỏ qua cọc đã có hatch; chạy ngay sau `TDXM` thì hatch đúng các cọc vừa đếm (tên ngắn của `HVFH`) |
 | `HVFH` | Giống `FH` |
+| `SUMHATCH` | Quét chọn hatch, cộng tổng diện tích, chia theo layer, tự đổi ra m² theo INSUNITS (tên ngắn của `HVSUMHATCH`) |
+| `HVSUMHATCH` | Giống `SUMHATCH` |
 | `UPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub (tên ngắn của `HVUPDATE`) |
 | `HVUPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub |
 | `HVHELP` | Xem danh sách lệnh (đọc `lenh/danh-sach.txt`) |
