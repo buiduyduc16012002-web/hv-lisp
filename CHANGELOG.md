@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.1 - 2026-11-25
+
+- Sửa `SUMHATCH` báo 0.000 m2: bản vẽ vẽ theo m nhưng INSUNITS = mm nên bị chia 1.000.000. Giờ in diện tích theo đơn vị vẽ (giống ô Area của PROPERTIES), kèm số m² cho cả hai trường hợp vẽ theo m và theo mm.
+- `FH` hatch được mọi đối tượng kín: vòng tròn, polyline kín (kể cả polyline điểm đầu trùng điểm cuối), ellipse, spline kín, region; báo số đã hatch theo loại, số đối tượng hở bị bỏ qua.
+
 ## 0.7.0 - 2026-11-25
 
 - Thêm lệnh `SUMHATCH` / `HVSUMHATCH`: quét chọn hatch, cộng tổng diện tích, chia theo layer, tự đổi ra m² theo INSUNITS (mm, cm, dm, m); không sửa bản vẽ.
