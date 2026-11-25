@@ -8,8 +8,14 @@ Bộ Lisp riêng dựa trên AutoLISP Civil Tools Community (GPL-3.0-or-later). 
 
 ## Cài đặt HVLisp (lần đầu)
 
-1. Tải https://github.com/buiduyduc16012002-web/hv-lisp/archive/refs/heads/main.zip, giải nén.
-2. Đổi tên thư mục `hv-lisp-main` thành `HVLisp` và đặt vào ổ `C:\` sao cho có file `C:\HVLisp\src\act-load.lsp`.
+1. Mở **PowerShell** trên máy Windows, dán nguyên dòng dưới rồi Enter. Lệnh tải bộ HVLisp mới nhất từ GitHub vào `C:\HVLisp`:
+
+   ```powershell
+   [Net.ServicePointManager]::SecurityProtocol='Tls12'; $r='buiduyduc16012002-web/hv-lisp'; $f="$env:TEMP\cai-lisp.ps1"; iwr -UseBasicParsing "https://raw.githubusercontent.com/$r/main/update.ps1" -OutFile $f; powershell -NoProfile -ExecutionPolicy Bypass -File $f -Repo $r -Dest 'C:\HVLisp'
+   ```
+
+   Hiện `Updated C:\HVLisp from ...` là xong.
+2. Cách tay (nếu không dùng PowerShell): tải https://github.com/buiduyduc16012002-web/hv-lisp/archive/refs/heads/main.zip, giải nén, đổi tên thư mục `hv-lisp-main` thành `HVLisp` và đặt vào ổ `C:\` sao cho có file `C:\HVLisp\src\act-load.lsp`.
 3. AutoCAD: `OPTIONS` → tab Files → *Trusted Locations* → thêm `C:\HVLisp\...` (dấu `...` để tin cả thư mục con), tránh cảnh báo bảo mật khi nạp.
 4. Gõ `APPLOAD` → chọn `C:\HVLisp\src\act-load.lsp` → Load. Muốn tự nạp mỗi lần mở AutoCAD: trong `APPLOAD` bấm *Contents...* (Startup Suite) → Add file đó.
 5. Dòng lệnh hiện `HVLisp v<phiên bản> - go HVHELP de xem lenh` là xong.
