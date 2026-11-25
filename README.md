@@ -15,7 +15,7 @@ Bộ Lisp riêng dựa trên AutoLISP Civil Tools Community (GPL-3.0-or-later). 
    ```
 
    Hiện `Updated C:\HVLisp from ...` là xong.
-2. Cách tay (nếu không dùng PowerShell): tải https://github.com/buiduyduc16012002-web/hv-lisp/archive/refs/heads/main.zip, giải nén, đổi tên thư mục `hv-lisp-main` thành `HVLisp` và đặt vào ổ `C:\` sao cho có file `C:\HVLisp\src\act-load.lsp`.
+2. Cách tay (nếu không dùng PowerShell): lấy file `hvlisp-v<phiên bản>.zip`, chuột phải → *Extract All* → chọn `C:\` (chỉ `C:\`, không thêm tên thư mục). Bên trong ZIP có sẵn thư mục `HVLisp`, nên sẽ được `C:\HVLisp\src\act-load.lsp`.
 3. AutoCAD: `OPTIONS` → tab Files → *Trusted Locations* → thêm `C:\HVLisp\...` (dấu `...` để tin cả thư mục con), tránh cảnh báo bảo mật khi nạp.
 4. Gõ `APPLOAD` → chọn `C:\HVLisp\src\act-load.lsp` → Load. Muốn tự nạp mỗi lần mở AutoCAD: trong `APPLOAD` bấm *Contents...* (Startup Suite) → Add file đó.
 5. Dòng lệnh hiện `HVLisp v<phiên bản> - go HVHELP de xem lenh` là xong.
@@ -92,7 +92,7 @@ Never rely on generated labels or CSV files as the sole source for production su
 ```bash
 python3 tests/check_repo.py
 bash scripts/package_release.sh
-unzip -t "dist/autolisp-civil-tools-v$(cat VERSION).zip"
+unzip -t "dist/hvlisp-v$(cat VERSION).zip"
 ```
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities privately using [SECURITY.md](SECURITY.md), not a public issue.

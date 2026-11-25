@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 - 2026-11-25
+
+- Sửa đóng gói: file ZIP tên `hvlisp-v<phiên bản>.zip`, thư mục bên trong tên `HVLisp`; giải nén thẳng vào `C:\` là được `C:\HVLisp`.
+
 ## 0.3.0 - 2026-11-25
 
 - Bắt đầu bộ **HVLisp** (fork của AutoLISP Civil Tools Community, giữ nguyên 7 lệnh CT và các module trong `src/`).

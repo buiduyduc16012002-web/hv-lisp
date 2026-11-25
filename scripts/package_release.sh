@@ -3,7 +3,7 @@ set -euo pipefail
 
 repo_dir="$(git rev-parse --show-toplevel)"
 version="$(tr -d '[:space:]' < "$repo_dir/VERSION")"
-archive_name="autolisp-civil-tools-v${version}.zip"
+archive_name="hvlisp-v${version}.zip"
 output_dir="${1:-$repo_dir/dist}"
 
 if [[ -n "${GITHUB_REF_NAME:-}" && "${GITHUB_REF_TYPE:-}" == "tag" && "${GITHUB_REF_NAME}" != "v${version}" ]]; then
@@ -14,7 +14,7 @@ fi
 mkdir -p "$output_dir"
 git -C "$repo_dir" archive \
   --format=zip \
-  --prefix="autolisp-civil-tools-v${version}/" \
+  --prefix="HVLisp/" \
   --output="$output_dir/$archive_name" \
   HEAD \
   VERSION LICENSE README.md CHANGELOG.md CONTRIBUTING.md SECURITY.md \

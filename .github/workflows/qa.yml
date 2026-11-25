@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
       - run: python3 tests/check_repo.py
       - run: bash scripts/package_release.sh
-      - run: unzip -t "dist/autolisp-civil-tools-v$(cat VERSION).zip"
+      - run: unzip -t "dist/hvlisp-v$(cat VERSION).zip"
       - uses: actions/upload-artifact@v7
         with:
           name: release-package
