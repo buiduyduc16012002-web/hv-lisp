@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.0 - 2026-11-25
+
+- Thêm lệnh `TTL` / `HVTTL`: tổng chiều dài LINE, LWPOLYLINE, POLYLINE (2D, 3D; bỏ qua lưới) được quét chọn; hộp thoại Alert báo số đối tượng và chiều dài theo loại, tổng theo LUNITS/LUPREC, nhóm hàng nghìn bằng dấu cách; bản vẽ mm có thêm dòng đổi ra m.
+
 ## 0.11.0 - 2026-11-25
 
 - `DAL` chế độ `CON`: chọn đối tượng (line, polyline, cung, xline...) là tự tính chân đường vuông góc từ điểm cuối xuống đối tượng và ghi kích thước luôn, không phải tự bắt điểm; `T` (Tudo) để click điểm tự do.

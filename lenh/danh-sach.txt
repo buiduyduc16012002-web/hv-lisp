@@ -13,6 +13,8 @@ SUMHATCH - quet chon hatch, ghi dien tich len tung vung, click ghi tong dien tic
 HVSUMHATCH - giong SUMHATCH
 DAL - kich thuoc lien tiep, chu giua: click diem tiep, C = CON thang hang (chon doi tuong la tu bat vuong goc), D = aligned, M = moi, U = xoa, ESC thoat
 HVDAL - giong DAL
+TTL - quet chon LINE/POLYLINE, hop thoai bao tong chieu dai
+HVTTL - giong TTL
 UPDATE - cap nhat HVLisp ban moi nhat tu GitHub (giong HVUPDATE)
 HVUPDATE - cap nhat HVLisp ban moi nhat tu GitHub
 HVHELP - xem danh sach lenh nay

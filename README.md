@@ -45,6 +45,8 @@ Gõ `UPDATE` (hoặc `HVUPDATE`) trong AutoCAD. Lệnh chạy `update.ps1` (Powe
 | `HVSUMHATCH` | Giống `SUMHATCH` |
 | `DAL` | Kích thước liên tiếp, chữ luôn chính giữa: ghi xong 1 kích thước thì click điểm tiếp để DIM nối tiếp theo từng đoạn (cùng khoảng cách, cùng phía); `C` (CON) DIM liên tiếp thẳng hàng, gióng vuông góc như DIMCONTINUE: chọn đối tượng (line, polyline, trục…) là tự bắt chân vuông góc và ghi luôn, `T` để click điểm tự do; `D` về chế độ theo đoạn; `M` chuỗi mới; `U` xóa cái vừa ghi; ESC thoát. Thay alias DAL của AutoCAD (lệnh gốc vẫn gọi bằng `DIMALIGNED`) (tên ngắn của `HVDAL`) |
 | `HVDAL` | Giống `DAL` |
+| `TTL` | Quét chọn LINE, LWPOLYLINE, POLYLINE; hộp thoại báo số đối tượng theo loại và tổng chiều dài theo đơn vị bản vẽ (LUNITS, LUPREC), nhóm hàng nghìn cho dễ đọc (tên ngắn của `HVTTL`) |
+| `HVTTL` | Giống `TTL` |
 | `UPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub (tên ngắn của `HVUPDATE`) |
 | `HVUPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub |
 | `HVHELP` | Xem danh sách lệnh (đọc `lenh/danh-sach.txt`) |
