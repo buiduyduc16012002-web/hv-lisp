@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.0 - 2026-11-25
+
+- Thêm lệnh `DIMGOP` / `HVDIMGOP`: gom các kích thước thẳng (aligned, linear) liền nhau, cùng đường kích thước, cùng giá trị hiển thị thành 1 kích thước có chữ `Nx<giá trị>=<>`, chữ chính giữa; nhiều nhóm một lần; có Undo.
+
 ## 0.13.0 - 2026-11-25
 
 - `TTL`: ghi chiều dài `L=…` lên giữa từng đối tượng, xoay theo hướng đối tượng, chữ cao bằng chữ kích thước (DIMTXT × DIMSCALE), layer CHU; chạy lại thì cập nhật nhãn cũ; có Undo.

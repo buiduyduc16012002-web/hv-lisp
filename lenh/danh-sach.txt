@@ -15,6 +15,8 @@ DAL - kich thuoc lien tiep, chu giua: click diem tiep, C = CON thang hang (click
 HVDAL - giong DAL
 TTL - quet chon LINE/POLYLINE, ghi L= len tung doi tuong, hop thoai bao tong chieu dai
 HVTTL - giong TTL
+DIMGOP - gom cac kich thuoc lien tiep bang nhau thanh 1 dim dang 5x5.00=25.00
+HVDIMGOP - giong DIMGOP
 UPDATE - cap nhat HVLisp ban moi nhat tu GitHub (giong HVUPDATE)
 HVUPDATE - cap nhat HVLisp ban moi nhat tu GitHub
 HVHELP - xem danh sach lenh nay

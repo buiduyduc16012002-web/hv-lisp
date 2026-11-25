@@ -47,6 +47,8 @@ Gõ `UPDATE` (hoặc `HVUPDATE`) trong AutoCAD. Lệnh chạy `update.ps1` (Powe
 | `HVDAL` | Giống `DAL` |
 | `TTL` | Quét chọn LINE, LWPOLYLINE, POLYLINE; ghi `L=…` lên giữa từng đối tượng (xoay theo đối tượng, cao bằng chữ kích thước, layer CHU, chạy lại thì cập nhật); hộp thoại báo số đối tượng theo loại và tổng chiều dài theo đơn vị bản vẽ (LUNITS, LUPREC), nhóm hàng nghìn cho dễ đọc (tên ngắn của `HVTTL`) |
 | `HVTTL` | Giống `TTL` |
+| `DIMGOP` | Quét chọn chuỗi kích thước, gom các kích thước liền nhau bằng nhau thành 1 kích thước ghi `5x5.00=25.00` (tổng do AutoCAD tự đo); nhiều nhóm trong 1 lần quét; kích thước lẻ giữ nguyên (tên ngắn của `HVDIMGOP`) |
+| `HVDIMGOP` | Giống `DIMGOP` |
 | `UPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub (tên ngắn của `HVUPDATE`) |
 | `HVUPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub |
 | `HVHELP` | Xem danh sách lệnh (đọc `lenh/danh-sach.txt`) |
