@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0 - 2026-11-25
+
+- Thêm lệnh `TDXM` / `HVTDXM`: đếm cọc TĐXM (CIRCLE) có tâm nằm trong polyline bao (cả polyline có đoạn cong), lọc theo vòng tròn mẫu (layer + đường kính), thống kê theo layer/đường kính, báo số cọc cắt đường bao, tô sáng cọc đếm được, tùy chọn ghi số lượng vào bản vẽ (layer CHU).
+
 ## 0.4.0 - 2026-11-25
 
 - Thêm lệnh `UPDATE`: tên ngắn, dễ nhớ của `HVUPDATE` (vẫn giữ `HVUPDATE`).
