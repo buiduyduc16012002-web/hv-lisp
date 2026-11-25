@@ -18,7 +18,7 @@ git -C "$repo_dir" archive \
   --output="$output_dir/$archive_name" \
   HEAD \
   VERSION LICENSE README.md CHANGELOG.md CONTRIBUTING.md SECURITY.md \
-  IP_PROVENANCE.md RELEASE_CHECKLIST.md TEST_REPORT.md docs examples src
+  IP_PROVENANCE.md RELEASE_CHECKLIST.md TEST_REPORT.md update.ps1 docs examples src lenh
 
 (
   cd "$output_dir"

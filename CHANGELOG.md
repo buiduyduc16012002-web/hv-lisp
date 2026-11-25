@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 - 2026-11-25
+
+- Bắt đầu bộ **HVLisp** (fork của AutoLISP Civil Tools Community, giữ nguyên 7 lệnh CT và các module trong `src/`).
+- `src/act-load.lsp`: thư mục gốc ưu tiên `C:\HVLisp`, đọc phiên bản từ file `VERSION`, tự nạp mọi file `.lsp` trong `lenh\` (file lỗi được báo tên và bỏ qua).
+- Thêm `update.ps1` (tải nhánh `main` từ GitHub, chép đè vào thư mục cài).
+- Thêm lệnh `HVUPDATE` (tự cập nhật trong AutoCAD) và `HVHELP` (xem danh sách lệnh) trong `lenh/hv-update.lsp`.
+- Thêm `lenh/danh-sach.txt`; đóng gói ZIP có thêm `lenh/` và `update.ps1`.
+- `tests/check_repo.py`: kiểm tra `lenh/` (ngoặc, tiền tố HV, trùng lệnh, chỉ ASCII, Undo khi sửa bản vẽ), chỉ cho phép gọi mạng trong `lenh/hv-update.lsp`, so phiên bản với file `VERSION`.
+
 ## 0.2.0 - 2026-09-04
 
 - Adds WCS CSV point import with quoted-field parsing and invalid-row reporting.

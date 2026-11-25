@@ -1,4 +1,46 @@
-# AutoLISP Civil Tools Community
+# HVLisp
+
+Bộ Lisp riêng dựa trên AutoLISP Civil Tools Community (GPL-3.0-or-later). Giữ nguyên 7 lệnh `CT` gốc, thêm lệnh riêng tiền tố `HV` trong thư mục `lenh/`, có lệnh tự cập nhật từ GitHub ngay trong AutoCAD.
+
+- Repo: https://github.com/buiduyduc16012002-web/hv-lisp
+- Thư mục cài trên máy: `C:\HVLisp`
+- Phiên bản: xem file [VERSION](VERSION)
+
+## Cài đặt HVLisp (lần đầu)
+
+1. Tải https://github.com/buiduyduc16012002-web/hv-lisp/archive/refs/heads/main.zip, giải nén.
+2. Đổi tên thư mục `hv-lisp-main` thành `HVLisp` và đặt vào ổ `C:\` sao cho có file `C:\HVLisp\src\act-load.lsp`.
+3. AutoCAD: `OPTIONS` → tab Files → *Trusted Locations* → thêm `C:\HVLisp\...` (dấu `...` để tin cả thư mục con), tránh cảnh báo bảo mật khi nạp.
+4. Gõ `APPLOAD` → chọn `C:\HVLisp\src\act-load.lsp` → Load. Muốn tự nạp mỗi lần mở AutoCAD: trong `APPLOAD` bấm *Contents...* (Startup Suite) → Add file đó.
+5. Dòng lệnh hiện `HVLisp v<phiên bản> - go HVHELP de xem lenh` là xong.
+
+## Cập nhật
+
+Gõ `HVUPDATE` trong AutoCAD. Lệnh chạy `update.ps1` (PowerShell, cửa sổ ẩn) tải nhánh `main` của repo về và chép đè vào `C:\HVLisp`, rồi nạp lại. Kết quả: `Cap nhat: v<cũ> -> v<mới>` hoặc `Dang la ban moi nhat`. Cần Internet và repo để **public**.
+
+`HVUPDATE` là lệnh duy nhất gọi mạng; các lệnh khác không kết nối Internet.
+
+## Danh sách lệnh
+
+| Lệnh | Việc làm |
+| --- | --- |
+| `CTCOORD` | Ghi số hiệu và tọa độ X/Y/Z cho điểm POINT |
+| `CTEXPORT` | Xuất điểm POINT và chữ TEXT ra CSV |
+| `CTIMPORT` | Nhập điểm POINT từ CSV có cột x, y, z |
+| `CTELEV` | Tạo hoặc cập nhật nhãn cao độ tại điểm |
+| `CTCHAINAGE` | Ghi lý trình và khoảng cách tới đường tim |
+| `CTINTERP` | Nội suy cao độ giữa 2 điểm khống chế |
+| `CTPROFILE` | Lập bảng lý trình, cao độ, tọa độ, khoảng cách tới tim |
+| `HVUPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub |
+| `HVHELP` | Xem danh sách lệnh (đọc `lenh/danh-sach.txt`) |
+
+Thêm lệnh mới: xem quy tắc trong [CLAUDE.md](CLAUDE.md).
+
+---
+
+Phần dưới là tài liệu của bộ gốc.
+
+## AutoLISP Civil Tools Community
 
 Small, auditable GPL-3.0-or-later tools for civil-survey work in AutoCAD-compatible CAD software.
 
@@ -23,9 +65,9 @@ Small, auditable GPL-3.0-or-later tools for civil-survey work in AutoCAD-compati
 1. Download the release ZIP and verify it with `CHECKSUMS.txt`.
 2. Extract it to a writable local folder.
 3. In AutoCAD or BricsCAD, run `APPLOAD` and load `src/act-load.lsp`.
-4. Confirm that the command line reports version `0.2.0`, then run a command above.
+4. Confirm that the command line reports the version in `VERSION`, then run a command above.
 
-The loader does not install an updater, make network calls, or collect telemetry.
+The loader makes no network calls and collects no telemetry. In HVLisp, only the `HVUPDATE` command downloads from GitHub, and only when you run it.
 
 ## Coordinate and data policy
 
@@ -44,11 +86,11 @@ Never rely on generated labels or CSV files as the sole source for production su
 ```bash
 python3 tests/check_repo.py
 bash scripts/package_release.sh
-unzip -t dist/autolisp-civil-tools-v0.2.0.zip
+unzip -t "dist/autolisp-civil-tools-v$(cat VERSION).zip"
 ```
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities privately using [SECURITY.md](SECURITY.md), not a public issue.
 
 ## License
 
-Copyright (C) 2026 Truong Hoa and contributors. Licensed under [GPL-3.0-or-later](LICENSE).
+Copyright (C) 2026 Truong Hoa and contributors. HVLisp changes (lenh/, update.ps1, loader) 2026. Licensed under [GPL-3.0-or-later](LICENSE).
