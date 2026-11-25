@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0 - 2026-11-25
+
+- `SUMHATCH`: ghi diện tích `S=… m2` lên giữa từng vùng hatch, click 1 điểm ghi tổng diện tích (layer CHU); hỏi đơn vị bản vẽ M/MM một lần (nhớ cho lần sau); chạy lại thì cập nhật nhãn cũ thay vì ghi chồng; có Undo.
+
 ## 0.7.1 - 2026-11-25
 
 - Sửa `SUMHATCH` báo 0.000 m2: bản vẽ vẽ theo m nhưng INSUNITS = mm nên bị chia 1.000.000. Giờ in diện tích theo đơn vị vẽ (giống ô Area của PROPERTIES), kèm số m² cho cả hai trường hợp vẽ theo m và theo mm.

@@ -9,7 +9,7 @@ TDXM - thong ke coc TDXM (vong tron) trong polyline bao, xong tu chon cac coc do
 HVTDXM - giong TDXM
 FH - quet chon, hatch dac SOLID tung vung kin (vong tron, polyline kin, ellipse, spline)
 HVFH - giong FH
-SUMHATCH - quet chon hatch, cong tong dien tich (in ca m2 khi ve theo m va theo mm)
+SUMHATCH - quet chon hatch, ghi dien tich len tung vung, click ghi tong dien tich
 HVSUMHATCH - giong SUMHATCH
 UPDATE - cap nhat HVLisp ban moi nhat tu GitHub (giong HVUPDATE)
 HVUPDATE - cap nhat HVLisp ban moi nhat tu GitHub
