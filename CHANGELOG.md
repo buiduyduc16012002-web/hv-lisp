@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.0 - 2026-11-25
+
+- `DAL`: thêm lệnh con `CON` (gõ `C`): DIM liên tiếp thẳng hàng với kích thước trước, cùng một đường kích thước, đường gióng vuông góc (như DIMCONTINUE); `D` quay về chế độ aligned theo từng đoạn.
+- `DAL`: chữ kích thước luôn đặt chính giữa đường kích thước (DIMTEDIT Center).
+
 ## 0.9.0 - 2026-11-25
 
 - Thêm lệnh `DAL` / `HVDAL`: kích thước aligned liên tiếp trong một vòng lặp đến khi ESC; lệnh con: click điểm = DIM nối tiếp (giữ khoảng cách và phía của đường kích thước), `M` = chuỗi mới, `U` = xóa kích thước vừa ghi. Mỗi kích thước là một bước Undo.
