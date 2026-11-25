@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0 - 2026-11-25
+
+- Thêm lệnh `UPDATE`: tên ngắn, dễ nhớ của `HVUPDATE` (vẫn giữ `HVUPDATE`).
+- `tests/check_repo.py`: cho phép danh sách tên ngắn không tiền tố `ALIASES`.
+
 ## 0.3.1 - 2026-11-25
 
 - Sửa đóng gói: file ZIP tên `hvlisp-v<phiên bản>.zip`, thư mục bên trong tên `HVLisp`; giải nén thẳng vào `C:\` là được `C:\HVLisp`.

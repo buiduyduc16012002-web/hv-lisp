@@ -1,7 +1,7 @@
-;;; Lenh: HVUPDATE, HVHELP
+;;; Lenh: UPDATE (ten goi nhanh), HVUPDATE, HVHELP
 ;;; Muc dich: HVUPDATE tai ban moi nhat cua HVLisp tu GitHub (nhanh main) ve thu muc goc
 ;;;           roi nap lai; HVHELP in danh sach lenh trong lenh\danh-sach.txt.
-;;; Cach dung: go HVUPDATE (can Internet, repo de public). Go HVHELP de xem lenh.
+;;; Cach dung: go UPDATE hoac HVUPDATE (can Internet, repo de public). Go HVHELP de xem lenh.
 ;;; Day la file DUY NHAT duoc phep goi mang (WScript.Shell + PowerShell).
 ;;; SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -72,6 +72,12 @@
     )
   )
   (princ)
+)
+
+;;; Ten goi nhanh cua HVUPDATE (nguoi dung yeu cau). Neu bo Lisp khac cung dinh nghia
+;;; C:UPDATE va nap sau thi UPDATE thuoc ve bo kia; HVUPDATE van luon dung.
+(defun C:UPDATE ()
+  (C:HVUPDATE)
 )
 
 (defun C:HVHELP (/ root path handle line)

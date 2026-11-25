@@ -19,7 +19,7 @@ Repo này là bộ Lisp riêng **HVLisp**, fork của `ankaibua-spec/autolisp-ci
 
 ## QUY TẮC VIẾT LISP
 
-1. Lệnh mới bắt đầu bằng tiền tố HV, mỗi lệnh một file trong `lenh\` (ngoại lệ có sẵn: `lenh/hv-update.lsp` chứa cả `HVUPDATE` và `HVHELP`). Đầu file chú thích: tên lệnh, mục đích, cách dùng.
+1. Lệnh mới bắt đầu bằng tiền tố HV, mỗi lệnh một file trong `lenh\` (ngoại lệ có sẵn: `lenh/hv-update.lsp` chứa `HVUPDATE`, `HVHELP` và tên ngắn `UPDATE`; tên không tiền tố chỉ thêm khi người dùng xin, ghi vào `ALIASES` trong `tests/check_repo.py`). Đầu file chú thích: tên lệnh, mục đích, cách dùng.
 2. Không sửa các module trong `src/` trừ khi người dùng yêu cầu rõ.
 3. Chữ hiện trên dòng lệnh dùng tiếng Việt KHÔNG DẤU (file trong `lenh/` chỉ ký tự ASCII).
 4. Khai báo đủ biến cục bộ; kiểm tra nil trước `strcat`, `rtos`, `car`; `(vl-load-com)` trước `vlax-*`; `vlax-curve-*` bọc `vl-catch-all-apply`; lệnh có sửa bản vẽ dùng `ACT:undo-start` / `ACT:undo-end` và `*error*` trả lại biến hệ thống.

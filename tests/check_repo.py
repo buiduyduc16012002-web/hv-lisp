@@ -11,6 +11,8 @@ LENH = ROOT / "lenh"
 PREFIX = "HV"
 # Only this file in lenh/ may call the network (WScript.Shell, PowerShell, http).
 NETWORK_ALLOWED = {"hv-update.lsp"}
+# Short names without the prefix, approved by the user. Keep this list tiny.
+ALIASES = {"UPDATE"}
 MODULES = [
     "act-core.lsp",
     "act-coord.lsp",
@@ -119,7 +121,7 @@ def main():
         check_patterns(path, text, patterns, failures)
         names = find_commands(text)
         for name in names:
-            if not name.startswith(PREFIX):
+            if not name.startswith(PREFIX) and name not in ALIASES:
                 failures.append(f"{path}: command C:{name} must start with prefix {PREFIX}")
         code = code_without_comments(text)
         if any(re.search(pattern, code, flags=re.IGNORECASE) for pattern in EDIT_CALLS):

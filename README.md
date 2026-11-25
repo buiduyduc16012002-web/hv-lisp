@@ -22,9 +22,9 @@ Bộ Lisp riêng dựa trên AutoLISP Civil Tools Community (GPL-3.0-or-later). 
 
 ## Cập nhật
 
-Gõ `HVUPDATE` trong AutoCAD. Lệnh chạy `update.ps1` (PowerShell, cửa sổ ẩn) tải nhánh `main` của repo về và chép đè vào `C:\HVLisp`, rồi nạp lại. Kết quả: `Cap nhat: v<cũ> -> v<mới>` hoặc `Dang la ban moi nhat`. Cần Internet và repo để **public**.
+Gõ `UPDATE` (hoặc `HVUPDATE`) trong AutoCAD. Lệnh chạy `update.ps1` (PowerShell, cửa sổ ẩn) tải nhánh `main` của repo về và chép đè vào `C:\HVLisp`, rồi nạp lại. Kết quả: `Cap nhat: v<cũ> -> v<mới>` hoặc `Dang la ban moi nhat`. Cần Internet và repo để **public**.
 
-`HVUPDATE` là lệnh duy nhất gọi mạng; các lệnh khác không kết nối Internet.
+`UPDATE`/`HVUPDATE` là lệnh duy nhất gọi mạng; các lệnh khác không kết nối Internet.
 
 ## Danh sách lệnh
 
@@ -37,6 +37,7 @@ Gõ `HVUPDATE` trong AutoCAD. Lệnh chạy `update.ps1` (PowerShell, cửa sổ
 | `CTCHAINAGE` | Ghi lý trình và khoảng cách tới đường tim |
 | `CTINTERP` | Nội suy cao độ giữa 2 điểm khống chế |
 | `CTPROFILE` | Lập bảng lý trình, cao độ, tọa độ, khoảng cách tới tim |
+| `UPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub (tên ngắn của `HVUPDATE`) |
 | `HVUPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub |
 | `HVHELP` | Xem danh sách lệnh (đọc `lenh/danh-sach.txt`) |
 
@@ -73,7 +74,7 @@ Small, auditable GPL-3.0-or-later tools for civil-survey work in AutoCAD-compati
 3. In AutoCAD or BricsCAD, run `APPLOAD` and load `src/act-load.lsp`.
 4. Confirm that the command line reports the version in `VERSION`, then run a command above.
 
-The loader makes no network calls and collects no telemetry. In HVLisp, only the `HVUPDATE` command downloads from GitHub, and only when you run it.
+The loader makes no network calls and collects no telemetry. In HVLisp, only the `UPDATE`/`HVUPDATE` command downloads from GitHub, and only when you run it.
 
 ## Coordinate and data policy
 

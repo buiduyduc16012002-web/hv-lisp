@@ -5,5 +5,6 @@ CTELEV - tao hoac cap nhat nhan cao do tai diem
 CTCHAINAGE - ghi ly trinh va khoang cach den duong tim
 CTINTERP - noi suy cao do giua 2 diem khong che
 CTPROFILE - lap bang ly trinh, cao do, toa do, khoang cach den tim
+UPDATE - cap nhat HVLisp ban moi nhat tu GitHub (giong HVUPDATE)
 HVUPDATE - cap nhat HVLisp ban moi nhat tu GitHub
 HVHELP - xem danh sach lenh nay
