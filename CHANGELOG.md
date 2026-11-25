@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.0 - 2026-11-25
+
+- `TTL`: ghi chiều dài `L=…` lên giữa từng đối tượng, xoay theo hướng đối tượng, chữ cao bằng chữ kích thước (DIMTXT × DIMSCALE), layer CHU; chạy lại thì cập nhật nhãn cũ; có Undo.
+- `DAL` chế độ `CON`: mặc định tự vuông góc, chỉ cần click vào đối tượng (không phải gõ T); bắt được đường nằm trong block/xref; click chỗ trống thì lấy đúng điểm; `T` cho lần click sau lấy đúng điểm trên đối tượng.
+
 ## 0.12.0 - 2026-11-25
 
 - Thêm lệnh `TTL` / `HVTTL`: tổng chiều dài LINE, LWPOLYLINE, POLYLINE (2D, 3D; bỏ qua lưới) được quét chọn; hộp thoại Alert báo số đối tượng và chiều dài theo loại, tổng theo LUNITS/LUPREC, nhóm hàng nghìn bằng dấu cách; bản vẽ mm có thêm dòng đổi ra m.

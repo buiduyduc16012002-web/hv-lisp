@@ -5,13 +5,16 @@
 ;;;                   duong gay khuc), cung khoang cach va cung phia voi kich thuoc dau.
 ;;;             CON : DIM lien tiep thang hang voi kich thuoc truoc (nhu DIMCONTINUE):
 ;;;                   cung mot duong kich thuoc, duong gong vuong goc, do hinh chieu.
-;;;                   CHON DOI TUONG (line, polyline, cung, truc...) la tu bat chan duong
-;;;                   vuong goc tu diem cuoi xuong doi tuong do va ghi kich thuoc luon.
+;;;                   MAC DINH TU VUONG GOC: click vao doi tuong (line, polyline, cung,
+;;;                   truc... ke ca nam trong block/xref) la tu bat chan duong vuong goc
+;;;                   tu diem cuoi xuong doi tuong do va ghi luon. Click cho trong = dung
+;;;                   diem click.
 ;;; Cach dung: go DAL -> diem dau -> diem thu hai -> vi tri duong kich thuoc.
 ;;;            Sau do lap lai (chi ESC moi thoat):
 ;;;              click diem : ghi tiep theo che do dang dung
 ;;;              C (Con)    : chuyen sang DIM lien tiep thang hang (vuong goc); trong CON:
-;;;                           click doi tuong = tu bat vuong goc, T (Tudo) = click diem tu do
+;;;                           click doi tuong = tu vuong goc; T (Tudo) = lan click sau
+;;;                           lay dung diem click (vd dau mut), khong vuong goc
 ;;;              D (Dal)    : chuyen ve che do aligned theo tung doan
 ;;;              M (Moi)    : bat dau chuoi moi (Enter cung vay)
 ;;;              U (Undo)   : xoa kich thuoc vua ghi, quay lai diem truoc
@@ -43,11 +46,66 @@
   (abs (+ (* (- (car b) (car a)) (cos ang)) (* (- (cadr b) (cadr a)) (sin ang))))
 )
 
-;;; Chan duong vuong goc tu diem from (UCS) xuong doi tuong ent (keo dai neu la line).
-;;; Tra ve diem UCS hoac nil (doi tuong khong phai duong, vd nam trong block).
-(defun HV:dal-perp-foot (ent from / foot)
-  (if (ACT:curve-p ent)
-    (setq foot (ACT:safe-call 'vlax-curve-getClosestPointTo (list ent (trans from 1 0) T)))
+;;; Doi tuong duoi diem click pt (UCS): ket qua nentselp, hoac nil neu khong co /
+;;; la kich thuoc (bo qua chinh cac DIM vua ghi).
+(defun HV:dal-pick-at (pt / hit bad)
+  (setq hit (nentselp pt))
+  (if hit
+    (progn
+      (if (= (ACT:entity-kind (car hit)) "DIMENSION") (setq bad T))
+      (if (= (length hit) 4)
+        (foreach parent (nth 3 hit)
+          (if (= (ACT:entity-kind parent) "DIMENSION") (setq bad T))
+        )
+      )
+      (if (not bad) hit)
+    )
+  )
+)
+
+;;; Ban sao tam cua doi tuong trong block, bien doi ra WCS bang ma tran 4x4 cua nentselp.
+(defun HV:dal-temp-copy (ent matrix / clean new result)
+  (setq clean nil)
+  (foreach item (entget ent)
+    (cond
+      ((member (car item) '(-1 -2 5 102 330 360 410)) nil)
+      ((= (car item) 8) (setq clean (cons (cons 8 (getvar "CLAYER")) clean)))
+      (T (setq clean (cons item clean)))
+    )
+  )
+  (setq new (entmakex (reverse clean)))
+  (if new
+    (progn
+      (setq result (vl-catch-all-apply 'vla-TransformBy (list (vlax-ename->vla-object new) (vlax-tmatrix matrix))))
+      (if (vl-catch-all-error-p result)
+        (progn (entdel new) nil)
+        new
+      )
+    )
+  )
+)
+
+;;; Chan duong vuong goc tu diem from (UCS) xuong doi tuong hit (ket qua nentselp).
+;;; Line ngan thi keo dai tuong tuong. Tra ve diem UCS hoac nil.
+(defun HV:dal-perp-foot-at (hit from / ent matrix copy foot)
+  (setq ent (car hit))
+  ;; Dinh cua POLYLINE cu -> lay polyline cha.
+  (if (= (ACT:entity-kind ent) "VERTEX") (setq ent (cdr (assoc 330 (entget ent)))))
+  (if (= (length hit) 4) (setq matrix (caddr hit)))
+  (cond
+    ((not (ACT:curve-p ent)) nil)
+    ((not matrix)
+      (setq foot (ACT:safe-call 'vlax-curve-getClosestPointTo (list ent (trans from 1 0) T)))
+    )
+    ((member (ACT:entity-kind ent) '("LINE" "LWPOLYLINE" "ARC" "CIRCLE" "ELLIPSE" "SPLINE" "XLINE" "RAY"))
+      (setq copy (HV:dal-temp-copy ent matrix))
+      (if copy
+        (progn
+          (setq foot (ACT:safe-call 'vlax-curve-getClosestPointTo (list copy (trans from 1 0) T)))
+          (entdel copy)
+        )
+      )
+    )
   )
   (if foot (trans foot 0 1))
 )
@@ -86,7 +144,7 @@
   )
 )
 
-(defun C:HVDAL (/ *error* document old-cmdecho history top p1 p2 loc d ent answer mode)
+(defun C:HVDAL (/ *error* document old-cmdecho history top p1 p2 loc d ent answer mode free hit foot)
   (defun *error* (message)
     (if HV:dal-saved-angle
       (progn
@@ -128,25 +186,28 @@
         (setq top (car history))
         (if (= mode "CON")
           (progn
-            ;; Chon doi tuong -> tu tinh chan duong vuong goc tu diem cuoi.
-            (setvar "ERRNO" 0)
+            ;; Click: trung doi tuong -> tu tinh chan duong vuong goc tu diem cuoi;
+            ;; cho trong (hoac sau T) -> dung diem click.
             (initget "Tudo Dal Moi Undo")
-            (setq answer (entsel "\nCON - chon doi tuong (tu bat vuong goc) hoac [Tudo/Dal/Moi/Undo] <Moi>: "))
+            (setq answer (getpoint (cadr top)
+                           (if free
+                             "\nCON - click diem (lay dung diem, khong vuong goc) hoac [Dal/Moi/Undo] <Moi>: "
+                             "\nCON - click doi tuong (tu vuong goc) hoac [Tudo/Dal/Moi/Undo] <Moi>: ")))
             (cond
-              ((and (null answer) (= (getvar "ERRNO") 7))
-                (prompt "\nDAL: chua trung doi tuong, chon lai.")
-                (setq answer "Lai")
-              )
               ((= answer "Tudo")
-                (setq answer (getpoint (cadr top) "\nDiem tiep theo: "))
-                (if (null answer) (setq answer "Lai"))
+                (setq free T answer "Lai")
               )
-              ((and (listp answer) (= (type (car answer)) 'ENAME))
-                (setq answer (HV:dal-perp-foot (car answer) (cadr top)))
-                (if (null answer)
+              ((and answer (listp answer))
+                (if free
+                  (setq free nil)
                   (progn
-                    (prompt "\nDAL: khong bat duoc vuong goc (doi tuong trong block?) - go T de click diem tu do.")
-                    (setq answer "Lai")
+                    (if (not document) (setq document (ACT:undo-start)))
+                    (setq hit (HV:dal-pick-at answer) foot nil)
+                    (if hit (setq foot (HV:dal-perp-foot-at hit (cadr top))))
+                    (cond
+                      (foot (setq answer foot))
+                      (hit (prompt "\nDAL: doi tuong nay khong bat vuong goc duoc - dung diem click."))
+                    )
                   )
                 )
               )
@@ -179,7 +240,7 @@
             ;; Cung goc va cung duong kich thuoc voi kich thuoc truoc.
             (if (> (HV:dal-projected (cadr top) answer (nth 4 top)) 1e-9)
               (progn
-                (setq document (ACT:undo-start))
+                (if (not document) (setq document (ACT:undo-start)))
                 (setq ent (HV:dal-make-rotated (cadr top) answer (nth 4 top) (nth 5 top)))
                 (setq document (ACT:undo-end document))
                 (if ent
@@ -187,7 +248,10 @@
                   (prompt "\nDAL: khong ghi duoc kich thuoc.")
                 )
               )
-              (prompt "\nDAL: diem nay khong lech theo huong kich thuoc, chon diem khac.")
+              (progn
+                (setq document (ACT:undo-end document))
+                (prompt "\nDAL: diem nay khong lech theo huong kich thuoc, chon diem khac.")
+              )
             )
           )
           ((listp answer)
