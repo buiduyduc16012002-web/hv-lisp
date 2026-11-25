@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.1 - 2026-11-25
+
+- Sửa `DIMGOP` đo xiên: kích thước gom giờ là kích thước LINEAR đo vuông góc (hình chiếu theo hướng trung bình của nhóm, đường gióng vuông góc) thay vì kéo dài kích thước aligned từ điểm đầu tới điểm cuối; giữ DimStyle, layer, đường kích thước của kích thước đầu nhóm; nhận các kích thước lệch hướng tới 2°.
+
 ## 0.14.0 - 2026-11-25
 
 - Thêm lệnh `DIMGOP` / `HVDIMGOP`: gom các kích thước thẳng (aligned, linear) liền nhau, cùng đường kích thước, cùng giá trị hiển thị thành 1 kích thước có chữ `Nx<giá trị>=<>`, chữ chính giữa; nhiều nhóm một lần; có Undo.
