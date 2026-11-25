@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0 - 2026-11-25
+
+- `DAL` chế độ `CON`: chọn đối tượng (line, polyline, cung, xline...) là tự tính chân đường vuông góc từ điểm cuối xuống đối tượng và ghi kích thước luôn, không phải tự bắt điểm; `T` (Tudo) để click điểm tự do.
+
 ## 0.10.0 - 2026-11-25
 
 - `DAL`: thêm lệnh con `CON` (gõ `C`): DIM liên tiếp thẳng hàng với kích thước trước, cùng một đường kích thước, đường gióng vuông góc (như DIMCONTINUE); `D` quay về chế độ aligned theo từng đoạn.

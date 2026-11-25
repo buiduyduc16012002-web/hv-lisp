@@ -5,10 +5,13 @@
 ;;;                   duong gay khuc), cung khoang cach va cung phia voi kich thuoc dau.
 ;;;             CON : DIM lien tiep thang hang voi kich thuoc truoc (nhu DIMCONTINUE):
 ;;;                   cung mot duong kich thuoc, duong gong vuong goc, do hinh chieu.
+;;;                   CHON DOI TUONG (line, polyline, cung, truc...) la tu bat chan duong
+;;;                   vuong goc tu diem cuoi xuong doi tuong do va ghi kich thuoc luon.
 ;;; Cach dung: go DAL -> diem dau -> diem thu hai -> vi tri duong kich thuoc.
 ;;;            Sau do lap lai (chi ESC moi thoat):
 ;;;              click diem : ghi tiep theo che do dang dung
-;;;              C (Con)    : chuyen sang DIM lien tiep thang hang (vuong goc)
+;;;              C (Con)    : chuyen sang DIM lien tiep thang hang (vuong goc); trong CON:
+;;;                           click doi tuong = tu bat vuong goc, T (Tudo) = click diem tu do
 ;;;              D (Dal)    : chuyen ve che do aligned theo tung doan
 ;;;              M (Moi)    : bat dau chuoi moi (Enter cung vay)
 ;;;              U (Undo)   : xoa kich thuoc vua ghi, quay lai diem truoc
@@ -38,6 +41,15 @@
 ;;; Do dai hinh chieu cua a->b len huong ang.
 (defun HV:dal-projected (a b ang)
   (abs (+ (* (- (car b) (car a)) (cos ang)) (* (- (cadr b) (cadr a)) (sin ang))))
+)
+
+;;; Chan duong vuong goc tu diem from (UCS) xuong doi tuong ent (keo dai neu la line).
+;;; Tra ve diem UCS hoac nil (doi tuong khong phai duong, vd nam trong block).
+(defun HV:dal-perp-foot (ent from / foot)
+  (if (ACT:curve-p ent)
+    (setq foot (ACT:safe-call 'vlax-curve-getClosestPointTo (list ent (trans from 1 0) T)))
+  )
+  (if foot (trans foot 0 1))
 )
 
 ;;; Dua chu kich thuoc ve chinh giua duong kich thuoc.
@@ -116,8 +128,29 @@
         (setq top (car history))
         (if (= mode "CON")
           (progn
-            (initget "Dal Moi Undo")
-            (setq answer (getpoint (cadr top) "\nCON - diem tiep theo (thang hang) hoac [Dal/Moi/Undo] <Moi>: "))
+            ;; Chon doi tuong -> tu tinh chan duong vuong goc tu diem cuoi.
+            (setvar "ERRNO" 0)
+            (initget "Tudo Dal Moi Undo")
+            (setq answer (entsel "\nCON - chon doi tuong (tu bat vuong goc) hoac [Tudo/Dal/Moi/Undo] <Moi>: "))
+            (cond
+              ((and (null answer) (= (getvar "ERRNO") 7))
+                (prompt "\nDAL: chua trung doi tuong, chon lai.")
+                (setq answer "Lai")
+              )
+              ((= answer "Tudo")
+                (setq answer (getpoint (cadr top) "\nDiem tiep theo: "))
+                (if (null answer) (setq answer "Lai"))
+              )
+              ((and (listp answer) (= (type (car answer)) 'ENAME))
+                (setq answer (HV:dal-perp-foot (car answer) (cadr top)))
+                (if (null answer)
+                  (progn
+                    (prompt "\nDAL: khong bat duoc vuong goc (doi tuong trong block?) - go T de click diem tu do.")
+                    (setq answer "Lai")
+                  )
+                )
+              )
+            )
           )
           (progn
             (initget "Con Moi Undo")
@@ -125,6 +158,7 @@
           )
         )
         (cond
+          ((= answer "Lai") nil)
           ((or (null answer) (= answer "Moi"))
             (setq history nil)
           )
