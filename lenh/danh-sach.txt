@@ -11,6 +11,8 @@ FH - quet chon, hatch dac SOLID tung vung kin (vong tron, polyline kin, ellipse,
 HVFH - giong FH
 SUMHATCH - quet chon hatch, ghi dien tich len tung vung, click ghi tong dien tich
 HVSUMHATCH - giong SUMHATCH
+DAL - kich thuoc aligned lien tiep: click diem tiep, M = chuoi moi, U = xoa, ESC thoat
+HVDAL - giong DAL
 UPDATE - cap nhat HVLisp ban moi nhat tu GitHub (giong HVUPDATE)
 HVUPDATE - cap nhat HVLisp ban moi nhat tu GitHub
 HVHELP - xem danh sach lenh nay

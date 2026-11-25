@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0 - 2026-11-25
+
+- Thêm lệnh `DAL` / `HVDAL`: kích thước aligned liên tiếp trong một vòng lặp đến khi ESC; lệnh con: click điểm = DIM nối tiếp (giữ khoảng cách và phía của đường kích thước), `M` = chuỗi mới, `U` = xóa kích thước vừa ghi. Mỗi kích thước là một bước Undo.
+
 ## 0.8.0 - 2026-11-25
 
 - `SUMHATCH`: ghi diện tích `S=… m2` lên giữa từng vùng hatch, click 1 điểm ghi tổng diện tích (layer CHU); hỏi đơn vị bản vẽ M/MM một lần (nhớ cho lần sau); chạy lại thì cập nhật nhãn cũ thay vì ghi chồng; có Undo.

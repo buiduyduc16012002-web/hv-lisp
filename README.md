@@ -43,6 +43,8 @@ Gõ `UPDATE` (hoặc `HVUPDATE`) trong AutoCAD. Lệnh chạy `update.ps1` (Powe
 | `HVFH` | Giống `FH` |
 | `SUMHATCH` | Chọn đơn vị bản vẽ (M/MM, nhớ lần trước), quét chọn hatch, ghi `S=… m2` lên giữa từng vùng, click 1 điểm ghi tổng diện tích (layer CHU); chạy lại thì cập nhật nhãn cũ (tên ngắn của `HVSUMHATCH`) |
 | `HVSUMHATCH` | Giống `SUMHATCH` |
+| `DAL` | Kích thước aligned liên tiếp: ghi xong 1 kích thước thì click điểm tiếp để DIM nối tiếp (cùng khoảng cách, cùng phía), `M` chuỗi mới, `U` xóa cái vừa ghi, ESC thoát. Thay alias DAL của AutoCAD (lệnh gốc vẫn gọi bằng `DIMALIGNED`) (tên ngắn của `HVDAL`) |
+| `HVDAL` | Giống `DAL` |
 | `UPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub (tên ngắn của `HVUPDATE`) |
 | `HVUPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub |
 | `HVHELP` | Xem danh sách lệnh (đọc `lenh/danh-sach.txt`) |
