@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0 - 2026-11-25
+
+- Thêm lệnh `FH` / `HVFH`: quét chọn cọc TĐXM (CIRCLE), tạo hatch SOLID liên kết cho từng vòng tròn trên layer HATCH, bỏ qua cọc đã có hatch; dùng được ngay tập chọn sẵn của `TDXM`.
+
 ## 0.5.1 - 2026-11-25
 
 - `TDXM`: thống kê xong tự chọn các cọc đếm được (chọn sẵn để dùng ngay MOVE/COPY/PROPERTIES) và lưu làm tập chọn Previous (gõ `P` ở dòng Select objects).

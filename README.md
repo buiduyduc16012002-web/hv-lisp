@@ -39,6 +39,8 @@ Gõ `UPDATE` (hoặc `HVUPDATE`) trong AutoCAD. Lệnh chạy `update.ps1` (Powe
 | `CTPROFILE` | Lập bảng lý trình, cao độ, tọa độ, khoảng cách tới tim |
 | `TDXM` | Thống kê cọc trụ đất xi măng (vòng tròn) có tâm nằm trong polyline bao; chọn vòng tròn mẫu để lọc theo layer và đường kính ; xong lệnh các cọc đếm được đang được chọn, gõ `P` để chọn lại (tên ngắn của `HVTDXM`) |
 | `HVTDXM` | Giống `TDXM` |
+| `FH` | Quét chọn cọc TĐXM, hatch đặc (SOLID, layer HATCH) bên trong từng vòng tròn; bỏ qua cọc đã có hatch; chạy ngay sau `TDXM` thì hatch đúng các cọc vừa đếm (tên ngắn của `HVFH`) |
+| `HVFH` | Giống `FH` |
 | `UPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub (tên ngắn của `HVUPDATE`) |
 | `HVUPDATE` | Cập nhật HVLisp bản mới nhất từ GitHub |
 | `HVHELP` | Xem danh sách lệnh (đọc `lenh/danh-sach.txt`) |

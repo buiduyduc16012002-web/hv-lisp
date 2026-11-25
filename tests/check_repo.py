@@ -12,7 +12,7 @@ PREFIX = "HV"
 # Only this file in lenh/ may call the network (WScript.Shell, PowerShell, http).
 NETWORK_ALLOWED = {"hv-update.lsp"}
 # Short names without the prefix, approved by the user. Keep this list tiny.
-ALIASES = {"UPDATE", "TDXM"}
+ALIASES = {"UPDATE", "TDXM", "FH"}
 MODULES = [
     "act-core.lsp",
     "act-coord.lsp",
